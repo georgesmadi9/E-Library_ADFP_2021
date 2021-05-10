@@ -4,8 +4,7 @@ import {Button, Card, Col, Form} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEdit, faList, faPlusSquare, faSave, faUndo} from "@fortawesome/free-solid-svg-icons";
 
-import axios from "axios";
-import ActionToast from "./actiontoast";
+import ActionToast from "./ActionToast";
 
 export default class Book extends Component {
 
@@ -33,16 +32,18 @@ export default class Book extends Component {
         }
     }
 
+    // Function associated to the GET Request /api/Books/:id
     findBookById = (bookId) => {
-        axios.get("http://localhost:8080/api/Books/" + bookId)
-            .then(response => {
-                if (response.data != null) {
+        fetch("http://localhost:8080/api/Books/" + bookId)
+            .then(response => response.json())
+            .then(book => {
+                if (book) {
                     this.setState({
-                        id: response.data.id,
-                        title: response.data.title,
-                        author: response.data.author,
-                        description: response.data.description,
-                        rating: response.data.rating
+                        id: book.id,
+                        title: book.title,
+                        author: book.author,
+                        description: book.description,
+                        rating: book.rating
                     });
                 }
             }).catch((error) => {
@@ -50,6 +51,8 @@ export default class Book extends Component {
         })
     }
 
+    // Function associated to the POST Request /api/Books
+    // Creates a new book and adds it to the database
     submitBook = (event) => {
         event.preventDefault();
 
@@ -60,9 +63,17 @@ export default class Book extends Component {
             rating: this.state.rating
         }
 
-        axios.post("http://localhost:8080/api/Books", book)
-            .then(response => {
-                if (response.data != null) {
+        const headers = new Headers();
+        headers.append("Content-Type", "application/json")
+
+        fetch("http://localhost:8080/api/Books", {
+            method: "POST",
+            body: JSON.stringify(book),
+            headers
+        })
+            .then(response => response.json())
+            .then((book) => {
+                if (book) {
                     this.setState({"show": true, "method": "post"});
                     setTimeout(() => this.setState({"show": false}), 3000)
                 } else {
@@ -73,6 +84,8 @@ export default class Book extends Component {
         this.setState(this.initialState);
     };
 
+    // Function associated to the PUT Request /api/Books/:id
+    // Edit an instance of books
     updateBook = event => {
         event.preventDefault();
 
@@ -84,9 +97,17 @@ export default class Book extends Component {
             rating: this.state.rating
         }
 
-        axios.put("http://localhost:8080/api/Books/" + book.id, book)
-            .then(response => {
-                if (response.data != null) {
+        const headers = new Headers();
+        headers.append("Content-Type", "application/json")
+
+        fetch("http://localhost:8080/api/Books/" + book.id, {
+            method: "PUT",
+            body: JSON.stringify(book),
+            headers
+        })
+            .then(response => response.json())
+            .then(book => {
+                if (book) {
                     this.setState({"show": true, "method": "put"});
                     setTimeout(() => this.setState({"show": false}), 3000);
                     setTimeout(() => this.bookList(), 3000)
@@ -98,16 +119,20 @@ export default class Book extends Component {
         this.setState(this.initialState);
     }
 
+    // Updating the state with the input from the form
     bookChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
         });
     };
 
+    // Reset all the fields in the forms
     resetBook = () => {
         this.setState(() => this.initialState);
     };
 
+    // By pressing the Book List button, redirects to the Book List tab
+    // After editing a book entry, redirects to the Book List tab
     bookList = () => {
         return this.props.history.push("/list");
     };

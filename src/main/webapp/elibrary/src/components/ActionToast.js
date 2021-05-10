@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import {Toast} from "react-bootstrap";
 
+// Action Toast that pops up after Creating/Editing/Deleting a book
+// Has no real purpose but be there to tell thje user that the action they performed was completed
 export default class ActionToast extends Component {
     render() {
         const toastCss = {

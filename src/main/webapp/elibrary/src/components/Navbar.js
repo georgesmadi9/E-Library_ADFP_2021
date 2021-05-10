@@ -4,6 +4,7 @@ import logo from '../resources/logo.png';
 import {Image, Nav, Navbar} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
+// Navbar
 export default class NavigationBar extends Component {
     render() {
         return (

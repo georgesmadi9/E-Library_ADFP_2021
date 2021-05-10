@@ -1,13 +1,12 @@
-import './App.css';
-
 import {Col, Container, Row} from "react-bootstrap";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import NavigationBar from './components/navbar';
-import Welcome from './components/welcome';
-import Footer from "./components/footer";
+import NavigationBar from './components/Navbar';
+import Welcome from './components/Welcome';
+import Footer from "./components/Footer";
 import Book from "./components/Book";
 import BookList from "./components/BookList";
 
+// Main app
 function App() {
     const marginTop = {
         marginTop: "20px"

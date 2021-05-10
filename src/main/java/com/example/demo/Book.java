@@ -1,9 +1,11 @@
 package com.example.demo;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import javax.persistence.*;
 
+// Book Entity for the database
+// If no database was created with the name
+// in application.properties it will be generate automatically
+// with the parameters given in the attributes of the class
 @Entity
 @Table(name = "books")
 public class Book {
@@ -12,13 +14,13 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column(name = "title")
+    @Column(name = "title", length = 50)
     private String title;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 5000)
     private String description;
 
-    @Column(name = "author")
+    @Column(name = "author", length = 25)
     private String author;
 
     @Column(name="rating")
