@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @OpenAPIDefinition
 @SpringBootApplication
+// Service
 public class ELibraryApplication {
     public static void main(String[] args) {
         SpringApplication.run(BookRESTController.class, args);
