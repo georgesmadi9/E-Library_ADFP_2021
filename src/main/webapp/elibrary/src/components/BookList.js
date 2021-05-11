@@ -116,7 +116,6 @@ export default class BookList extends Component {
     // if no method was chosen or the search term is empty
     // we use the GET Request to get everything /api/Books
     searchMethod = () => {
-        const search = this.state.search;
         if (this.state.dropdownValue === "Title") {
             this.searchByTitle();
         } else if (this.state.dropdownValue === "Author") {
@@ -160,22 +159,33 @@ export default class BookList extends Component {
                         </div>
                         <div style={{"float": "right"}}>
                             <InputGroup size={"sm"}>
-                                <DropdownButton size={"sm"}
-                                                title={this.state.dropdownValue}
-                                                as={InputGroup.Prepend}
-                                                variant={"outline-secondary"}
-                                                id={"dropdown-filter"}
-                                >
-                                    <DropdownItem as={Button}
-                                                  onClick={() => this.handleSelect("Title")}>Title</DropdownItem>
-                                    <DropdownItem as={Button}
-                                                  onClick={() => this.handleSelect("Author")}>Author</DropdownItem>
-                                    <DropdownItem as={Button}
-                                                  onClick={() => this.handleSelect("Rating")}>Rating</DropdownItem>
+                                <DropdownButton
+                                    size={"sm"}
+                                    title={this.state.dropdownValue}
+                                    as={InputGroup.Prepend}
+                                    variant={"outline-secondary"}
+                                    id={"dropdown-filter"}>
+                                    <DropdownItem
+                                        as={Button}
+                                        onClick={() => this.handleSelect("Title")}>
+                                        Title
+                                    </DropdownItem>
+                                    <DropdownItem
+                                        as={Button}
+                                        onClick={() => this.handleSelect("Author")}>
+                                        Author
+                                    </DropdownItem>
+                                    <DropdownItem
+                                        as={Button}
+                                        onClick={() => this.handleSelect("Rating")}>
+                                        Rating
+                                    </DropdownItem>
                                     <Dropdown.Divider/>
-                                    <DropdownItem as={Button}
-                                                  onClick={() => this.handleSelect("Author & Rating (A|R)")}>Author &
-                                        Rating (A|R)</DropdownItem>
+                                    <DropdownItem
+                                        as={Button}
+                                        onClick={() => this.handleSelect("Author & Rating (A|R)")}>
+                                        Author & Rating (A|R)
+                                    </DropdownItem>
                                 </DropdownButton>
                                 <FormControl
                                     placeholder={"Search ..."}

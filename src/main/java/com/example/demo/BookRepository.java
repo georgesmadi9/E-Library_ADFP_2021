@@ -21,7 +21,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @Query(value = "SELECT * FROM books WHERE rating >= :number", nativeQuery = true)
     List<Book> findByRating(@Param("number") float rating);
 
-    // GET Request to get books by author & rating /api/Books?author={:title}&rating={:number}
+    // GET Request to get books by author & rating /api/Books?author={:author}&rating={:number}
     @Query(value = "SELECT * FROM books WHERE author = :author AND rating >= :number", nativeQuery = true)
     List<Book> findByAuthorAndRating(@Param("author") String author, @Param("number") float rating);
 
