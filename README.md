@@ -1,8 +1,8 @@
-# E-Library_ADFP_2021
-Final Project on REST API using Spring boot. 
-This application is a simple E-Library simulation realised by Peter Harfouche, Christian Maalouly, Georges Madi and Raphael Sassine.
+# E-Library_ADFP_2021  
+Final Project on REST API using Spring boot.  
+This application is a simple E-Library simulation realised by Peter Harfouche, Christian Maalouly, Georges Madi and Raphael Sassine.  
 
-Possible Requests:
+Possible Requests:  
 |                     URI                    | Method |                                      Description                                           |
 |:------------------------------------------:|:------:|:------------------------------------------------------------------------------------------:|
 | /api/Books                                 |   GET  |Affiche tous les livres                                                                     |
